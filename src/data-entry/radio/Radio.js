@@ -3,43 +3,42 @@ import PropTypes from "prop-types";
 
 import { noop } from "../../helpers";
 
-import { Label, RadioButton } from "./styles";
+import { Container } from "./styles";
 
 const Radio = ({
   id,
   name,
   value,
-  defaultChecked,
+  checked,
   label,
   onChange,
   disabled,
   className,
   style
 }) => (
-  <Label
-    htmlFor={id}
-    onChange={onChange}
-    disabled={disabled}
-    className={className}
-    style={style}
-  >
-    <RadioButton
-      disabled={disabled}
+  <Container style={style} className={className}>
+    <input
+      onChange={onChange}
+      value={value}
+      name={name}
       type="radio"
       id={id}
-      name={name}
-      value={value}
-      defaultChecked={defaultChecked}
+      hidden
+      checked={checked}
+      disabled={disabled}
     />
-    {label}
-  </Label>
+    <div className="radioContainer">
+      <span className="checkmark" />
+    </div>
+    {label && <div className="radioLabel">{label}</div>}
+  </Container>
 );
 
 Radio.propTypes = {
   /** add custom className */
   className: PropTypes.string,
   /** specifies the initial state of radio */
-  defaultChecked: PropTypes.bool,
+  checked: PropTypes.bool,
   /** disabled click of radio */
   disabled: PropTypes.bool,
   /** specifies id of radio */
@@ -58,7 +57,7 @@ Radio.propTypes = {
 
 Radio.defaultProps = {
   className: "",
-  defaultChecked: false,
+  checked: false,
   disabled: false,
   onChange: noop,
   style: null

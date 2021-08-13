@@ -7,7 +7,7 @@ describe("Radio", () => {
     const wrapper = mount(
       <Radio
         className="radio-style"
-        defaultChecked
+        checked
         id="123"
         label="Label de exemplo"
         name="group-radio"
@@ -17,7 +17,7 @@ describe("Radio", () => {
     );
 
     expect(wrapper.props().className).toEqual("radio-style");
-    expect(wrapper.props().defaultChecked).toEqual(true);
+    expect(wrapper.props().checked).toEqual(true);
     expect(wrapper.props().id).toEqual("123");
     expect(wrapper.props().label).toEqual("Label de exemplo");
     expect(wrapper.props().name).toEqual("group-radio");

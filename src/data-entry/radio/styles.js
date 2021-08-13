@@ -1,50 +1,65 @@
 import styled from "styled-components";
 
-export const Label = styled.label`
+export const Container = styled.label`
   display: flex;
   align-items: center;
-  color: #444444;
-  font-size: 12px;
-  margin-right: 10px;
-
-  ${props =>
-    props.disabled
-      ? `
-      cursor: not-allowed;
-      opacity: .6;
-    `
-      : `
-      cursor: pointer;
-    `};
-`;
-
-export const RadioButton = styled.input`
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid #b7b7b7;
   position: relative;
-  outline: none;
-  margin-right: 10px;
+  user-select: none;
+  color: #565656;
 
-  &:checked {
-    &::after {
+  input:checked ~ .radioContainer .checkmark:after {
+    display: block;
+  }
+
+  input:disabled ~ .radioContainer {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  input:disabled ~ .radioLabel {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .radioContainer {
+    cursor: pointer;
+
+    .checkmark {
+      margin-right: 10px;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      border: 1px solid #bbb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+    }
+    .checkmark:after {
       content: "";
+      position: absolute;
+      display: none;
+    }
+    .checkmark:after {
       width: 8px;
       height: 8px;
-      position: absolute;
-      background-color: #44adf8;
-      position: absolute;
       border-radius: 50%;
-      top: 2px;
-      left: 2px;
+      background: #50aff4;
     }
   }
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
+  > input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
   }
 `;
